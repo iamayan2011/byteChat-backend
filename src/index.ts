@@ -1,0 +1,22 @@
+import dotenv from "dotenv";
+dotenv.config();
+import express, {Express} from 'express';
+import { responseEnhancer } from "./middleware/response.middleware";
+import authRoutes from "./routes/Auth/auth.route";
+import { validateEnv, env } from './config/env.config';
+import {connectDB} from "./lib/db";
+import cookieParser from "cookie-parser";
+
+validateEnv();
+const app: Express = express();
+const port = env.PORT;
+
+app.use(express.json());
+app.use(cookieParser());
+app.use(responseEnhancer);
+app.use("/api/auth", authRoutes);
+
+app.listen(port, async () => {
+    console.log(`Server is running on port ${port}`);
+    await connectDB();
+});
