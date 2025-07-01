@@ -4,18 +4,12 @@ import bcrypt from 'bcryptjs';
 import { generateToken } from '../../lib/utils';
 import { HttpStatus } from '../../common/HttpStatus';
 
-export const generateError = (stack: string, status: number) => {
-    const err: any = new Error(stack);
-    err.status = status;
-    return err;
-};
-
 export const findUserByEmail = async (email: string) => {
     return await User.findOne({ email });
 };
 
 export const findUserById = async (id: string) => {
-    return await User.findById({id}).select('-password');;
+    return await User.findById(id).select('-password');;
 }
 
 export const hashPassword = async (password: string) => {

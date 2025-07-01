@@ -23,4 +23,8 @@ router.put("/update-profile",
     authMiddleware.checkAuthenticated,
     authController.updateProfile
 );
+router.get("/check-auth",
+    authMiddleware.checkAuthenticated,
+    authController.checkAuth
+)
 export default router;

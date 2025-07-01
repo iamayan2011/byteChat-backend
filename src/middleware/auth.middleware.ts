@@ -10,7 +10,6 @@ interface CustomJwtPayload extends JwtPayload {
     userId: string;
 }
 
-
 export const checkEmailForSignup = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const user = await authHelper.findUserByEmail(req.body.email);
@@ -49,7 +48,7 @@ export const checkEmailForLogin = async (req: Request, res: Response, next: Next
 
 export const checkAuthenticated = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const token = req.cookies.token;
+        const token = req.cookies.token || req.headers.authorization?.split(' ')[1];
         if(!token) {
             return res.withError(
                 'Unauthorized. Please login first.',
@@ -63,14 +62,15 @@ export const checkAuthenticated = async (req: Request, res: Response, next: Next
                 HttpStatus.UNAUTHORIZED
             );
         }
-        console.log(decoded);
-        const user = authHelper.findUserById(decoded.userId);
+        let userId = decoded.userId;
+        const user = authHelper.findUserById(userId);
         if(!user) {
             return res.withError(
                 'Unauthorized. User not found.',
                 HttpStatus.UNAUTHORIZED
             );
         }
+        req.user = user;
         next();
 
     } catch (error) {
