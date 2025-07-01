@@ -39,18 +39,23 @@ export const logout = (req: Request, res: Response) => {
 
 export const updateProfile: RequestHandler = async (req, res) => {
   try {
-      const { profilePicture } = req.body;
-      if (!profilePicture) {
-          return res.withError('Profile picture is required', HttpStatus.BAD_REQUEST);
-      }
-      const userId = req.user?._id;
-      const updatedUser = await authServices.updateUserProfile(userId, { profilePicture });
-      res.withData(updatedUser, 'Profile updated successfully', HttpStatus.OK);
-  } catch (error: any) {
-      res.withError(
-          error.message || 'Failed to update profile',
-          error.status || HttpStatus.INTERNAL_SERVER_ERROR
+    const { profilePicture } = req.body;
+    if (!profilePicture) {
+      return res.withError(
+        "Profile picture is required",
+        HttpStatus.BAD_REQUEST
       );
+    }
+    const userId = req.user?._id;
+    const updatedUser = await authServices.updateUserProfile(userId, {
+      profilePicture,
+    });
+    res.withData(updatedUser, "Profile updated successfully", HttpStatus.OK);
+  } catch (error: any) {
+    res.withError(
+      error.message || "Failed to update profile",
+      error.status || HttpStatus.INTERNAL_SERVER_ERROR
+    );
   }
 };
 
@@ -64,4 +69,3 @@ export const checkAuth = (req: Request, res: Response) => {
     );
   }
 };
-
