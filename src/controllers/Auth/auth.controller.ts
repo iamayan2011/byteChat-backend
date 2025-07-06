@@ -61,7 +61,7 @@ export const updateProfile: RequestHandler = async (req, res) => {
 
 export const checkAuth = (req: Request, res: Response) => {
   try {
-    res.withData(true, "User is authenticated", HttpStatus.OK);
+    res.withData(req.user, "User is authenticated", HttpStatus.OK);
   } catch (error) {
     res.withError(
       "Error in checking authentication",
