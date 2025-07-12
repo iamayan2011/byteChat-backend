@@ -39,8 +39,8 @@ export const logout = (req: Request, res: Response) => {
 
 export const updateProfile: RequestHandler = async (req, res) => {
   try {
-    const { profilePicture } = req.body;
-    if (!profilePicture) {
+    const { profilePic } = req.body;
+    if (!profilePic) {
       return res.withError(
         "Profile picture is required",
         HttpStatus.BAD_REQUEST
@@ -48,7 +48,7 @@ export const updateProfile: RequestHandler = async (req, res) => {
     }
     const userId = req.user?._id;
     const updatedUser = await authServices.updateUserProfile(userId, {
-      profilePicture,
+      profilePic,
     });
     res.withData(updatedUser, "Profile updated successfully", HttpStatus.OK);
   } catch (error: any) {

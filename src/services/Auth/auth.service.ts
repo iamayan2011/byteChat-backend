@@ -71,15 +71,15 @@ export const login = async (
 
 export const updateUserProfile = async (
   userId: string,
-  updateData: { profilePicture: string }
+  updateData: { profilePic: Base64URLString }
 ) => {
   try {
     const uploadResponse = await cloudinary.uploader.upload(
-      updateData.profilePicture
+      updateData.profilePic
     );
     const updatedUser = await User.findByIdAndUpdate(
       userId,
-      { profilePicture: uploadResponse.secure_url },
+      { profilePic: uploadResponse.secure_url },
       { new: true, runValidators: true }
     );
 
