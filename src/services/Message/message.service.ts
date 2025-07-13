@@ -26,10 +26,6 @@ export const getMessages = async (myId: string, userToChatId: string) => {
         { senderId: userToChatId, receiverId: myId },
       ],
     })
-      .populate('senderId', 'fullName profilePic')
-      .populate('receiverId', 'fullName profilePic')
-      .sort({ createdAt: -1 })
-      .lean();
     return messages;
   } catch (error: any) {
     throw generateError(
