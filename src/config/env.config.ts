@@ -1,6 +1,7 @@
 export const env = {
   NODE_ENV: process.env.NODE_ENV,
   PORT: process.env.PORT || "5001",
+  ORIGIN_URL: process.env.ORIGIN_URL!,
   MONGODB_URI: process.env.MONGODB_URI!,
   JWT_SECRET: process.env.JWT_SECRET!,
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME!,

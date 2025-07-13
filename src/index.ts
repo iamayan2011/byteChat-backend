@@ -8,9 +8,9 @@ import { validateEnv, env } from './config/env.config';
 import {connectDB} from "./lib/db";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { app, server } from "./lib/socket";
 
 validateEnv();
-const app: Express = express();
 const port = env.PORT;
 
 app.use(express.json({ limit: "10mb" }));
@@ -27,7 +27,7 @@ app.use(
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
-app.listen(port, async () => {
+server.listen(port, async () => {
   console.log(`Server is running on port ${port}`);
   await connectDB();
 });

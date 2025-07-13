@@ -3,6 +3,7 @@ import Message from "../../models/message.model";
 import { HttpStatus } from "../../common/HttpStatus";
 import { generateError } from "../../lib/utils";
 import cloudinary from "../../lib/cloudinary";
+import { getReceiverSocketId, io } from "../../lib/socket";
 
 export const getUsers = async (loggedInUserId: string) => {
   try {
@@ -50,7 +51,10 @@ export const sendMessage = async (myId: string, userToChatId: string, text: stri
     });
     await newMessage.save();
 
-    // todo: realtime functionality using socket.io
+    const receiverSocketId = getReceiverSocketId(userToChatId);
+    if(receiverSocketId){
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
     return newMessage;
   } catch (error: any) {
     throw generateError(
