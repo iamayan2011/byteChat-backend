@@ -3,6 +3,9 @@
 A modern, real-time chat application built with React, TypeScript, and Node.js, featuring WebSocket support for instant messaging. The application provides a seamless chat experience with real-time message delivery, user authentication, and responsive design.
 
 Visit the frontend repository [here](https://github.com/iamayan2011/bytechat-frontend).
+<img width="1909" height="876" alt="image" src="https://github.com/user-attachments/assets/0f3da116-48d2-483e-b95b-e15f542b530b" />
+<img width="1311" height="824" alt="image" src="https://github.com/user-attachments/assets/8621694c-a526-41cb-a656-b79d323f91fd" />
+<img width="1916" height="866" alt="image" src="https://github.com/user-attachments/assets/bba4a84c-dd93-4b93-94c5-32ddb9c7507c" />
 
 ## Features
 
