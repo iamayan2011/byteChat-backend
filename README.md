@@ -199,6 +199,7 @@ Refer the `env.example` files in both the frontend and backend directories for e
 3. **Testing**
    - Lint code: `npm run lint`
    - Test API endpoints using Postman or similar tools
+   - Unit Testing is planned.
 
 4. **Production**
    - Build frontend: `npm run build`
@@ -206,9 +207,7 @@ Refer the `env.example` files in both the frontend and backend directories for e
    - Start production server: `npm start`
 
 ## Acknowledgments
-- **Codesistency**: For project structure and best practices
-- **daisyUI**: For beautiful UI components
-- **React Community**: For amazing open-source libraries
+- Codesistency
 
 ---
 
